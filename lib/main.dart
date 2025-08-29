@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nike_shop/data/model/product.dart';
+import 'package:nike_shop/data/repo/product_repository.dart';
 import 'package:nike_shop/theme.dart';
 
 void main() {
@@ -8,9 +10,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    productRepository.getAll(ProductSort.latest).then((value) {
+      debugPrint(value.first.title.toString());
+    });
     const TextStyle defaultTextStyle = TextStyle(fontFamily: 'Shabnam');
     return MaterialApp(
       title: 'Flutter Demo',
