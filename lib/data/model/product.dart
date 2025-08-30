@@ -5,7 +5,7 @@ class ProductSort {
   static const int priceLowToHigh = 3;
 }
 
-class Product {
+class ProductModel {
   int id;
   String title;
   String imageUrl;
@@ -13,7 +13,7 @@ class Product {
   int discount;
   int previousPrice;
 
-  Product.fromJson(Map<String, dynamic> json)
+  ProductModel.fromJson(Map<String, dynamic> json)
     : id = json['id'],
       title = json['title'],
       imageUrl = json['image'],
