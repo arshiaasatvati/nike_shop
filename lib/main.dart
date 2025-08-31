@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nike_shop/data/model/product.dart';
-import 'package:nike_shop/data/repo/banner_repository.dart';
-import 'package:nike_shop/data/repo/product_repository.dart';
 import 'package:nike_shop/theme.dart';
+import 'package:nike_shop/ui/home/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,35 +39,8 @@ class MyApp extends StatelessWidget {
       ),
       home: Directionality(
         textDirection: TextDirection.rtl,
-        child: const MyHomePage(),
+        child: const HomeScreen(),
       ),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    productRepository
-        .getAll(ProductSort.latest)
-        .then((value) {
-          debugPrint(value.first.title.toString());
-        })
-        .catchError((e) {
-          debugPrint(e.toString());
-        });
-
-    bannerRepository
-        .getAll()
-        .then((value) {
-          debugPrint(value.first.imageUrl.toString());
-        })
-        .catchError((e) {
-          debugPrint(e.toString());
-        });
-
-    return Scaffold(body: Center(child: Text('test')));
   }
 }
