@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:nike_shop/common/exceptions.dart';
+import 'package:nike_shop/common/utils.dart';
+import 'package:nike_shop/data/model/banner.dart';
 import 'package:nike_shop/data/repo/banner_repository.dart';
 import 'package:nike_shop/data/repo/product_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_shop/ui/home/bloc/home_bloc.dart';
+import 'package:nike_shop/ui/widgets/network_image.dart';
+import 'package:nike_shop/ui/widgets/slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,15 +29,22 @@ class HomeScreen extends StatelessWidget {
             builder: (context, state) {
               if (state is HomeSuccess) {
                 return ListView.builder(
-                  padding: EdgeInsets.fromLTRB(16, 16, 16, 100),
+                  physics: defaultScrollPhysics,
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     switch (index) {
-                      case 1:
-                        return Image.asset(
-                          'assets/images/nike_logo.png',
-                          height: 32,
+                      case 0:
+                        return Container(
+                          height: 56,
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            'assets/images/nike_logo.png',
+                            height: 24,
+                          ),
                         );
+
+                      case 2:
+                        return BannerSlider(banners: state.banners);
 
                       default:
                         return Container();
